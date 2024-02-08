@@ -32,3 +32,4 @@ Route::get('/hitung',[BerhitungController::class, 'hitung']);
 Route::get('/daftar',[TestController::class, 'daftar']);
 
 Route::post('/kirim',[TestController::class, 'kirim']);
+Route::get('/coba',[TestController::class, 'index']);
