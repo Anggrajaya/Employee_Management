@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center text-white">
                         <div class="sidebar-brand-icon rotate-n-15">
-                            <i class="fas fa-laugh-wink"></i>
+                            <i class="fas fa-address-book"></i>
                         </div>
                         <div class="sidebar-brand-text mx-3 text-white-500">Employee Menegement</div>
                 </div>

@@ -22,6 +22,12 @@
 
 </head>
 
+<style>
+    .no-text-decoration{
+        text-decoration: none;
+    }
+</style>
+
 <body id="page-top">
 <div class="bg-primary">
     <x-app-layout>
@@ -34,9 +40,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-address-book"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+                <div class="sidebar-brand-text mx-3">Employee Menegement</div>
             </a>
 
             <!-- Divider -->
@@ -44,7 +50,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="{{url('/dashboard')}}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -59,7 +65,7 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{url('/pegawai')}}">
                     <i class="fas fa-solid fa-user"></i>
                     <span>Pegawai</span>
                 </a>
@@ -67,13 +73,13 @@
 
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{url('/cuti')}}">
                     <i class="fas fa-fw fa-clock"></i>
                     <span>Cuti</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#">
+                <a class="nav-link collapsed" href="{{url('/department')}}">
                     <i class="fas fa-fw fa-building"></i>
                     <span>Departement</span>
                 </a>
@@ -291,6 +297,9 @@
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Jumlah (Karyawan)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                            <a href="{{url('/detail_pegawai')}}" class="nav-link text-sm text-primary m-0 p-0 pt-1">
+                                                <span>Lihat Karyawan</span>
+                                            </a>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-solid fa-user fa-2x text-gray-300"></i>
@@ -299,7 +308,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">

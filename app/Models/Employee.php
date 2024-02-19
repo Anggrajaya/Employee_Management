@@ -3,20 +3,46 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
+    use HasFactory;
+
     protected $table = 'employee';
-    protected $primaryKey ='id_employee';
-    protected $foreignKey ='id_departement';
     protected $fillable =[
-        'nama_employee',
+        'NIP',
+        'image_pegawai',
+        'nama_pegawai',
         'alamat_employee',
-        'no_telepon_employee',
+        'no_telp_employee',
         'gaji_employee',
-        'job_employee',
+        'NID',
         'jabatan_employee',
     ];
-    use HasFactory;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($employee) {
+            // Ambil semua pegawai yang memiliki ID lebih besar dari ID pegawai yang dihapus
+            $employeesToUpdate = Employee::where('id', '>', $employee->id)->get();
+
+            // Perbarui nomor urutnya dengan mengurangi satu
+            foreach ($employeesToUpdate as $emp) {
+                $emp->update(['nomor_urut' => $emp->nomor_urut - 1]);
+            }
+        });   
+    }
+    public function status()
+    {
+        $cutiNIPs = Cuti::pluck('NIP')->toArray();
+        return in_array($this->NIP, $cutiNIPs) ? 'Cuti' : 'Masuk';
+    }
 }
+
+
+
+
