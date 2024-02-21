@@ -17,4 +17,9 @@ class Department extends Model
         'lokasi_departement',
         'manager_departement',
     ];
+
+    public function employees()
+    {
+        return $this->hasMany(Employee::class, 'NID', 'NID');
+    }
 }

@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\CutiControler;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\DetailCutiController;
+use App\Http\Controllers\DetailDepartmentController;
 use App\Http\Controllers\DetailPegawaiController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
@@ -23,9 +26,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,6 +50,14 @@ Route::get('/department', function(){
 
 Route::get('/detail_pegawai', function(){
     return view('detail_pegawai');
+});
+
+Route::get('/detail_department',function(){
+    return view('detail_department');
+});
+
+Route::get('/detail_cuti',function(){
+    return view('detail_cuti');
 });
 
 //CRUD PEGAWAI
@@ -75,5 +86,13 @@ Route::delete('/department/{department}/delete', [DepartmentController::class, '
 
 //DETAIL PEGAWAI
 Route::get('/detail_pegawai',[DetailPegawaiController::class,'index'])->name('detail_pegawai.index');
+
+//DETAIL DEPARTMENT
+Route::get('/detail_department',[DetailDepartmentController::class, 'index'])->name('detail_departmen.index');
+Route::get('/department/{id}',[DepartmentController::class,'detail'])-> name ('detail_department') ;
+
+//DETAIL CUTI
+Route::get('/detail_cuti',[DetailCutiController::class,'index'])->name('detail_cuti.index');
+
 
 require __DIR__.'/auth.php';

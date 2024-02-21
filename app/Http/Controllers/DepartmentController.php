@@ -7,6 +7,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Department;
+use App\Models\Employee;
 
 class DepartmentController extends Controller
 {
@@ -50,5 +51,12 @@ class DepartmentController extends Controller
         $department = Department::findOrFail($id);
         $department->delete();
         return redirect(route('department.index'))->with('success', 'Data Berhasil Dihapus');
+    }
+    public function detail($id)
+    {
+        $department = Department::findOrFail($id);
+        $employee = Employee::where('NID', $department->NID)->get();
+        
+        return view('department_detail', compact('department', 'employee'));
     }
 }
