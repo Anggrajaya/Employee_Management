@@ -8,6 +8,8 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Department;
 use App\Models\Employee;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DepartmentExport;
 
 class DepartmentController extends Controller
 {
@@ -58,5 +60,10 @@ class DepartmentController extends Controller
         $employee = Employee::where('NID', $department->NID)->get();
         
         return view('department_detail', compact('department', 'employee'));
+    }
+
+    public function exportToExcel()
+    {
+      return Excel::download(new DepartmentExport, 'department.xlsx');
     }
 }

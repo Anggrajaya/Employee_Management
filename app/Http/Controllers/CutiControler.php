@@ -6,6 +6,8 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\CutiExport;
 
 class CutiControler extends Controller
 {
@@ -51,6 +53,10 @@ class CutiControler extends Controller
       $cuti= Cuti::findOrFail($id);
       $cuti->delete();
       return redirect(route('cuti.index'))->with('success', 'Data Berhasil Dihapus');
+    }
+
+    public function exportToExcel(){
+      return Excel::download(new CutiExport, 'cuti.xlsx');
     }
 }
 

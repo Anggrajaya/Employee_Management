@@ -67,6 +67,8 @@ Route::post('/pegawai', [EmployeeController::class, 'store'])->name('pegawai.sto
 Route::get('/pegawai/{employee}/edit', [EmployeeController::class, 'edit'])->name('pegawai.edit');
 Route::put('/pegawai/{employee}/update', [EmployeeController::class, 'update'])->name('pegawai.update');
 Route::delete('/pegawai/{employee}/delete', [EmployeeController::class, 'destroy'])->name('pegawai.destroy');
+Route::get('/pegawai/export/excel', [EmployeeController::class,'exportToExcel'])->name('employees.export.excel');
+
 
 
 //CRUD CUTI
@@ -75,6 +77,7 @@ Route::post('/cuti',[CutiControler::class,'store'])->name('cuti.store');
 Route::get('/cuti/{cuti}/edit', [CutiControler::class, 'edit'])->name('cuti.edit');
 Route::put('/cuti/{cuti}/update', [CutiControler::class, 'update'])->name('cuti.update');
 Route::delete('/cuti/{cuti}/delete', [CutiControler::class, 'destroy'])->name('cuti.destroy');
+Route::get('/cuti/export/excel', [CutiControler::class,'exportToExcel'])->name('cuti.export.excel');
 
 
 //CRUD DEPARTMENT
@@ -83,6 +86,7 @@ Route::post('/department',[DepartmentController::class,'store'])->name('departme
 Route::get('/department/{department}/edit', [DepartmentController::class, 'edit'])->name('department.edit');
 Route::put('/department/{department}/update', [DepartmentController::class, 'update'])->name('department.update');
 Route::delete('/department/{department}/delete', [DepartmentController::class, 'destroy'])->name('department.destroy');
+Route::get('/department/export/excel', [DepartmentController::class,'exportToExcel'])->name('department.export.excel');
 
 //DETAIL PEGAWAI
 Route::get('/detail_pegawai',[DetailPegawaiController::class,'index'])->name('detail_pegawai.index');
