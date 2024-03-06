@@ -77,8 +77,19 @@
                             <!-- Page Heading -->
                             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                                 <h1 class="h3 mb-0 text-gray-800">Pegawai</h1>
-                                <a href="{{ route('employees.export.excel') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                        class="fas fa-download fa-sm text-white-50"></i> Download Laporan</a>
+                                @error('NIP')
+                                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                    role="alert">
+                                    <strong class="font-bold">Alert !</strong>
+                                    <span class="block sm:inline">{{ $message }}</span>
+                                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                                </div>
+                                @enderror
+
+                                <a href="{{ route('employees.export.excel') }}"
+                                    class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                        class="fas fa-download fa-sm text-white-50"></i>
+                                    Download Laporan</a>
                             </div>
 
                             <!-- Content Row -->
