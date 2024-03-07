@@ -9,6 +9,6 @@ class DetailCutiController extends Controller
 {
     public function index(){
         $cuti=Cuti::all();
-        return view ('detail_cuti',['cuti'=>$cuti]);
+        return view ('extend.detail_cuti_extend',['cuti'=>$cuti]);
     }
 }

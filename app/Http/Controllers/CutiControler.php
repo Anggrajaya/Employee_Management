@@ -15,7 +15,7 @@ class CutiControler extends Controller
 
     public function index(){
         $cuti=Cuti::all();
-        return View ('cuti',['cuti'=>$cuti]);
+        return View ('extend.cuti_extend',['cuti'=>$cuti]);
     }
 
     public function store(Request $request){

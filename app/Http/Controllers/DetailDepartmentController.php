@@ -12,6 +12,6 @@ class DetailDepartmentController extends Controller
     {
         $department = Department::all();
         $employee = Employee::all();
-        return view('detail_department', ['department' => $department], compact('department','employee'));
+        return view('extend.detail_department_extend', ['department' => $department], compact('department','employee'));
     }
 }

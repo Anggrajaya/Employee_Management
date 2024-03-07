@@ -16,7 +16,7 @@ class DepartmentController extends Controller
     public function index()
     {
         $department = Department::all();
-        return view('department', ['department' => $department]);
+        return view('extend.department_extend', ['department' => $department]);
     }
 
     public function store(Request $request)

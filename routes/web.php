@@ -37,8 +37,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/pegawai', function(){
-    return view('pegawai');
-});
+    return view('extend.pegawai_extend');
+})->name('pegawai');
 
 Route::get('/cuti', function(){
     return view('cuti');
@@ -63,7 +63,7 @@ Route::get('/detail_cuti',function(){
 //CRUD PEGAWAI
 
 Route::get('/pegawai', [EmployeeController::class, 'index'])->name('pegawai.index');
-Route::post('/pegawai', [EmployeeController::class, 'store'])->name('pegawai.store');
+Route::post('/pegawai/store', [EmployeeController::class, 'store'])->name('pegawai.store');
 Route::get('/pegawai/{employee}/edit', [EmployeeController::class, 'edit'])->name('pegawai.edit');
 Route::put('/pegawai/{employee}/update', [EmployeeController::class, 'update'])->name('pegawai.update');
 Route::delete('/pegawai/{employee}/delete', [EmployeeController::class, 'destroy'])->name('pegawai.destroy');

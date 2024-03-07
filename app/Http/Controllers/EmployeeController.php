@@ -27,7 +27,7 @@ class EmployeeController extends Controller
     foreach ($employee as $employees) {
       $employees->status = in_array($employees->NIP, $cutiNIPs) ? 'Cuti' : 'Masuk';
     }
-    return view('pegawai', ['employee' => $employee]);
+    return view('extend.pegawai_extend', ['employee' => $employee]);
   }
 
 
@@ -43,35 +43,37 @@ class EmployeeController extends Controller
    */
   public function store(Request $request)
   {
-    $data = $request->validate([
-      'NIP' => 'required', new UniqueNIP,
-      'nama_pegawai' => 'required',
-      'image_pegawai' => 'nullable|mimes:jpg,png,jpeg|max:5048',
-      'alamat_employee' => 'required',
-      'no_telp_employee' => 'required',
-      'gaji_employee' => 'required',
-      'NID' => 'required',
-      'jabatan_employee' => 'required',
-    ],
-  );
+    $data = $request->validate(
+      [
+        'NIP' => 'required', new UniqueNIP,
+        'nama_pegawai' => 'required',
+        'image_pegawai' => 'nullable|mimes:jpg,png,jpeg|max:5048',
+        'alamat_employee' => 'required',
+        'no_telp_employee' => 'required',
+        'gaji_employee' => 'required',
+        'NID' => 'required',
+        'jabatan_employee' => 'required',
+      ],
+    );
 
-  try {
-    $newEmployee = Employee::create($data);
-    return redirect(route('pegawai.index'));
-} catch (QueryException $e) {
-    // Tangani kesalahan ketika terjadi constraint violation
-    // Jika constraint violation adalah karena NIP yang sudah ada, berikan pesan ke pengguna
-    if ($e->errorInfo[1] === 1062) {
+    try {
+      $newEmployee = Employee::create($data);
+      $newEmployee->uploadImage($request->file('image_pegawai'));
+      return redirect(route('pegawai.index'));
+    } catch (QueryException $e) {
+      // Tangani kesalahan ketika terjadi constraint violation
+      // Jika constraint violation adalah karena NIP yang sudah ada, berikan pesan ke pengguna
+      if ($e->errorInfo[1] === 1062) {
         return back()->withInput()->withErrors(['NIP' => 'NIP sudah ada dalam database. Harap masukkan NIP yang berbeda.']);
+      }
+      // Tangani kesalahan lainnya jika diperlukan
+      return back()->withInput()->withErrors(['message' => 'Terjadi kesalahan. Silakan coba lagi.']);
     }
-    // Tangani kesalahan lainnya jika diperlukan
-    return back()->withInput()->withErrors(['message' => 'Terjadi kesalahan. Silakan coba lagi.']);
-}
 
     if ($request->hasFile('image_pegawai')) {
       $file = $request->file('image_pegawai');
       $fileName = time() . '_' . $file->getClientOriginalName();
-      $filePath = $file->storeAS('/public/images', $fileName); // Simpan file ke direktori 'images' (sesuaikan dengan kebutuhan Anda)
+      $filePath = $file->storeAs('public/images', $fileName); // Simpan file ke direktori 'public/images'
       $data['image_pegawai'] = $filePath; // Simpan path file ke kolom 'image_pegawai'
     }
 

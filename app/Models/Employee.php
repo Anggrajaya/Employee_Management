@@ -41,6 +41,16 @@ class Employee extends Model
         $cutiNIPs = Cuti::pluck('NIP')->toArray();
         return in_array($this->NIP, $cutiNIPs) ? 'Cuti' : 'Masuk';
     }
+
+    public function uploadImage($image)
+    {
+        if ($image) {
+            $fileName = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('public/images', $fileName);
+            $this->image_pegawai = 'images/' . $fileName;
+            $this->save();
+        }
+    }
 }
 
 

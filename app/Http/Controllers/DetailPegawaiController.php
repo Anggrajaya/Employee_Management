@@ -14,6 +14,6 @@ class DetailPegawaiController extends Controller
         foreach ($employee as $employees) {
           $employees->status = in_array($employees->NIP, $cutiNIPs) ? 'Cuti' : 'Masuk';
         }
-        return view('detail_pegawai',['employee'=>$employee]); 
+        return view('extend.detail_pegawai_extend',['employee'=>$employee]); 
     }
 }

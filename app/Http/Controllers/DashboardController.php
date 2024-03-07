@@ -15,6 +15,6 @@ class DashboardController extends Controller
         $jumlah_department= Department::count();
         $employee=Employee::all();
 
-        return view('dashboard',['jumlah_pegawai'=>$jumlah_pegawai,'jumlah_cuti'=>$jumlah_cuti,'jumlah_department'=>$jumlah_department,'employee'=>$employee]);
+        return view('extend.dashboard_extend',['jumlah_pegawai'=>$jumlah_pegawai,'jumlah_cuti'=>$jumlah_cuti,'jumlah_department'=>$jumlah_department,'employee'=>$employee]);
     }
 }

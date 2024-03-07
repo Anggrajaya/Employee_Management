@@ -832,26 +832,26 @@
 
 <body class="antialiased">
     <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+        class="relative sm:flex sm:justify-center sm:items-center min-h-screen dark:bg-gray-200 selection:bg-red-500 selection:text-white">
         @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
             @auth
             <a href="{{ url('/dashboard') }}"
-                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
+                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Dashboard</a>
             @else
             <a href="{{ route('login') }}"
-                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
                 in</a>
 
             @if (Route::has('register'))
             <a href="{{ route('register') }}"
-                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-500 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
             @endif
             @endauth
         </div>
         @endif
         <div>
-            <h1 class="text-2xl font-bold" id="typewriter">Employee Menegement</h1>
+            <h1 class="text-2xl font-bold " id="typewriter">Employee Menegement</h1>
         </div>
     </div>
     <style>
@@ -868,12 +868,13 @@
         /* Animasi mesin ketik */
         #typewriter {
             overflow: hidden; /* Membuat teks terpotong saat animasi berlangsung */
-            border-right: .15em solid rgb(255, 255, 255); /* Menambahkan efek kursor ketik */
+            border-right: .15em solid rgb(42, 40, 40); /* Menambahkan efek kursor ketik */
             white-space: nowrap; /* Mencegah teks terpotong ke baris baru */
             margin: 0 auto; /* Pusatkan teks */
-            color: white;
+            color: rgb(46, 46, 46);
             font-size: 6em;
             animation: typing 5s steps(50) infinite alternate; /* Atur durasi, jumlah langkah, dan animasi berulang */
+            text-shadow: 2px 2px #767676;
         }
     </style>
 </body>
