@@ -192,25 +192,19 @@
                             <h6 class="m-0 font-weight-bold text-primary">Direktur</h6>
                         </div>
                         <div class="card-body">
-                            <div class="text-center">
-                                @foreach ($employee as $employees)
-                                @if($employees->jabatan_employee=='Direktur Utama')
+                            @foreach ($employee as $employees)
+                            @if($employees->jabatan_employee=='Direktur Utama')
+                            <div class="text-center">  
                                 <img class="aspect-w-1 aspect-h-1 px-3 px-sm-4 mt-3 mb-4 aspect-w-1 square"
                                     style="width: 10rem;  border-radius: 10px;"
                                     src="{{Storage::url($employees->image_pegawai)}}" alt="...">
-                                @endif
-                                @endforeach
-
+                               
                             </div>
-                            <p>Add some quality, svg illustrations to your project courtesy of <a
-                                    target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>,
-                                a
-                                constantly updated collection of beautiful svg images that you can use
-                                completely free and without attribution!</p>
-                            <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse
-                                Illustrations on
-                                unDraw &rarr;</a>
+                            <p>Perkenalkan nama saya adalah {{$employees->nama_pegawai}}. Saya adalah direktur di PT. Jaya Selalu, sebuah perusahaan yang berkomitmen untuk memberikan layanan terbaik kepada pelanggan kami. </p>
+                                <p class="pt-2">Dengan tim yang profesional dan berdedikasi, kami terus berusaha untuk menciptakan inovasi, meningkatkan kualitas produk, dan memperluas jangkauan pasar kami. Kami percaya bahwa dengan mempertahankan standar kualitas tinggi dan menjaga hubungan yang baik dengan pelanggan serta mitra bisnis kami, kami dapat terus tumbuh dan berkembang di pasar yang kompetitif.</p>
                         </div>
+                        @endif
+                        @endforeach
                     </div>
 
                     <!-- Approach -->
