@@ -61,20 +61,17 @@ class EmployeeController extends Controller
       $newEmployee->uploadImage($request->file('image_pegawai'));
       return redirect(route('pegawai.index'));
     } catch (QueryException $e) {
-      // Tangani kesalahan ketika terjadi constraint violation
-      // Jika constraint violation adalah karena NIP yang sudah ada, berikan pesan ke pengguna
       if ($e->errorInfo[1] === 1062) {
         return back()->withInput()->withErrors(['NIP' => 'NIP sudah ada dalam database. Harap masukkan NIP yang berbeda.']);
       }
-      // Tangani kesalahan lainnya jika diperlukan
       return back()->withInput()->withErrors(['message' => 'Terjadi kesalahan. Silakan coba lagi.']);
     }
 
     if ($request->hasFile('image_pegawai')) {
       $file = $request->file('image_pegawai');
       $fileName = time() . '_' . $file->getClientOriginalName();
-      $filePath = $file->storeAs('public/images', $fileName); // Simpan file ke direktori 'public/images'
-      $data['image_pegawai'] = $filePath; // Simpan path file ke kolom 'image_pegawai'
+      $filePath = $file->storeAs('public/images', $fileName); 
+      $data['image_pegawai'] = $filePath; 
     }
 
     $newEmployee = Employee::create($data);
@@ -116,8 +113,8 @@ class EmployeeController extends Controller
     if ($request->hasFile('image_pegawai')) {
       $file = $request->file('image_pegawai');
       $fileName = time() . '_' . $file->getClientOriginalName();
-      $filePath = $file->storeAS('/public/images', $fileName); // Simpan file ke direktori 'images' (sesuaikan dengan kebutuhan Anda)
-      $data['image_pegawai'] = $filePath; // Simpan path file ke kolom 'image_pegawai'
+      $filePath = $file->storeAS('/public/images', $fileName); 
+      $data['image_pegawai'] = $filePath; 
     }
 
     $employee->update($data);
