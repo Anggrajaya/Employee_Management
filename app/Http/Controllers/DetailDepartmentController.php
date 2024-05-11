@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Department;
 use App\Models\Employee;
+use illuminate\Support\Facades\Auth;
 
 class DetailDepartmentController extends Controller
 {
@@ -12,6 +13,7 @@ class DetailDepartmentController extends Controller
     {
         $department = Department::all();
         $employee = Employee::all();
-        return view('extend.detail_department_extend', ['department' => $department], compact('department','employee'));
+        $user = Auth::user();
+        return view('extend.detail_department_extend', ['department' => $department,'user' => $user ], compact('department','employee','user'));
     }
 }

@@ -9,7 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Employee Menegement</title>
+    <title>StaffHub</title>
+    <link href="{{ asset('storage/images/logo.png') }}" rel="icon">
+    <link href="{{ asset('storage/images/logo.png') }}" rel="apple-touch-icon">
     @include('libraries.style')
 
 </head>

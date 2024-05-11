@@ -29,7 +29,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-address-book"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Employee Menegement</div>
+            <div class="sidebar-brand-text mx-3">StaffHub</div>
         </a>
 
         <!-- Divider -->

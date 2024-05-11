@@ -26,6 +26,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/coba', function () {
+    return view('dashboard');
+});
+
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -97,6 +101,21 @@ Route::get('/department/{id}',[DepartmentController::class,'detail'])-> name ('d
 
 //DETAIL CUTI
 Route::get('/detail_cuti',[DetailCutiController::class,'index'])->name('detail_cuti.index');
+
+// Routes with role-based access control
+Route::middleware(['role:admin'])->group(function () {
+    Route::redirect('/dashboard', '/pegawai');
+    Route::get('/department', [DepartmentController::class, 'index'])->name('department.index');
+    Route::get('/pegawai', [EmployeeController::class, 'index'])->name('pegawai.index');
+    Route::get('/cuti', [CutiControler::class, 'index'])->name('cuti.index');
+});
+
+Route::middleware(['role:user,admin'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/detail_pegawai', [DetailPegawaiController::class, 'index'])->name('detail.pegawai');
+    Route::get('/detail_department', [DetailDepartmentController::class, 'index'])->name('detail.department');
+    Route::get('/detail_cuti', [DetailCutiController::class, 'index'])->name('detail.cuti');
+});
 
 
 require __DIR__.'/auth.php';
