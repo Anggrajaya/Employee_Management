@@ -61,8 +61,8 @@
                         @if(auth()->check() && auth()->user()->hasRole('admin'))
                             <a class="nav-link scrollto" href="{{url('pegawai')}}">Edit Data</a>
                         @endif
-                    </li
-                    <li><i class="getstarted scrollto" href="#about">{{$user->name}}</i></li>
+                    </li>
+                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
